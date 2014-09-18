@@ -1,0 +1,13 @@
+{application, ecache,
+ [
+  {description, "Erlang in-memory cache"},
+  {vsn, "0.0.1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  lager
+                 ]},
+  {mod, { ecache_app, []}},
+  {env, []}
+ ]}.
