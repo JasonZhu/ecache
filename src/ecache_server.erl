@@ -6,7 +6,6 @@
 -export([
     start_link/0, 
     start_link/1,
-    stop/0, 
     get/1, 
     set/3, 
     delete/1]).
@@ -30,13 +29,10 @@
 %% ===================================================================
 
 start_link() ->
-    gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
+    start_link([]).
 
 start_link(Arg) ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, Arg, []).
-
-stop() ->
-    gen_server:cast(?MODULE, stop).
 
 get(Key) ->
     ?debug("[GET] Key: ~p", [Key]),
@@ -55,9 +51,9 @@ delete(Key) ->
 %% ===================================================================
 init(Opts) ->
     ?info("init ecache server with opts:~p", [Opts]),
-    MaxSize = proplists:get_value(ets_maxsize, Opts, 8 * 1024 * 1024),
-    Threshold = proplists:get_value(ets_threshold, Opts, 0.85),
-    Weight = proplists:get_value(access_weight, Opts, 30),
+    MaxSize = proplists:get_value(ets_maxsize, Opts),
+    Threshold = proplists:get_value(ets_threshold, Opts),
+    Weight = proplists:get_value(access_weight, Opts),
     ETSName = ets:new(ecache_server, [{keypos, #cache.key}, private]),
     {ok, #state{
         ets_maxsize = MaxSize,
