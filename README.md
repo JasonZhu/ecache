@@ -5,7 +5,7 @@ Erlang In-Memory Cache
 
 ## Usage
 
-Just add ecache dep to you `rebar.config`:
+Just add `ecache` dep to you `rebar.config`:
 
 ```erlang
 {deps, [
@@ -24,9 +24,12 @@ And `ecache` settings in your app.config file:
 ```
 ## API
 ```erlang
-ecache:set(Key, Val, TTL).
-ecache:get(Key).
-ecache:delete(Key).
+
+ecache:set(Key, Val, TTL) -> ok.
+
+ecache:get(Key) -> {ok, Val} | {error, Reason}.
+
+ecache:delete(Key) -> ok.
 ```
 
 ## Features
