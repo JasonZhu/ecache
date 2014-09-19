@@ -1,0 +1,5 @@
+
+-define(DEFAULT_ETS_THRESHOLD, 0.80).
+-define(DEFAULT_ETS_MAXSIZE, 50*1024*1024). %% 50M
+-define(DEFAULT_ACCESS_WEIGHT, 50).
+-define(DEFAULT_TTL, 5*60). %% 5 minutes
