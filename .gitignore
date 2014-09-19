@@ -2,4 +2,6 @@
 /deps
 /.eunit
 /log
+/.rebar
+rebar
 erl_crash.dump
