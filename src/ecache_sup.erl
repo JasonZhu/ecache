@@ -27,8 +27,10 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
-    SettingKeys = [{ets_threshold, undefined}, {ets_maxsize, 512*1024*1024}, {access_weight, 30}],
+    SettingKeys = [
+        {ets_threshold, ?DEFAULT_ETS_THRESHOLD}, 
+        {ets_maxsize, ?DEFAULT_ETS_MAXSIZE}, 
+        {access_weight, ?DEFAULT_ACCESS_WEIGHT}],
     Args = [{Key, ecache:get_env(Key, Default)}  || {Key, Default} <- SettingKeys],
     ?info("app_env:~p", [Args]),
     {ok, { {one_for_one, 5, 10}, [?CHILD(worker, ecache_server, Args)]}}.
-

@@ -37,7 +37,7 @@ get(Key) ->
 
 -spec set(key(), val()) -> ok.
 set(Key, Val) ->
-    set(Key, Val, 30).
+    set(Key, Val, ?DEFAULT_TTL).
 
 -spec set(key(), val(), integer()) -> ok.
 set(Key, Val, TTL) ->
